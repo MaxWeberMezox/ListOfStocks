@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpService, StockItem } from "../http.service";
 import {ActivatedRoute, ParamMap} from '@angular/router'
 
-const formatDate = (dateString: string) => {
+import {HttpService, StockItem} from "../http.service";
 
+const formatDate = (dateString: string) => {
   const date = new Date(dateString);
   const hours = date.getHours();
   const minutes = date.getMinutes();

@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-const options = {params: {token:'9ba04d8fae2c55e918dd6a429a9a0ceaa5f82593'}};
+
+const options = {params: {token: '9ba04d8fae2c55e918dd6a429a9a0ceaa5f82593'}};
 
 export interface ListOfStocksItem {
   ticker: string;
@@ -48,13 +49,16 @@ export class HttpService {
   constructor(private http: HttpClient) {
 
   }
-  getList(): Observable<ListOfStocksItem[]>{
-    return this.http.get<ListOfStocksItem[]>('https://api.tiingo.com/iex/', options );
+
+  getList(): Observable<ListOfStocksItem[]> {
+    return this.http.get<ListOfStocksItem[]>('https://api.tiingo.com/iex/', options);
   }
-  getStock(ticker: string): Observable<StockItem[]>{
+
+  getStock(ticker: string): Observable<StockItem[]> {
     return this.http.get<StockItem[]>(`https://api.tiingo.com/iex/${ticker}/prices`, options)
   }
-  search(query: string):Observable<SearchItem[]>{
+
+  search(query: string): Observable<SearchItem[]> {
     return this.http.get<SearchItem[]>(`https://api.tiingo.com/tiingo/utilities/search/${query}`, options)
   }
 }

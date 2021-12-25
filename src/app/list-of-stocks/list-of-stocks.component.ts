@@ -1,9 +1,10 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {HttpService, ListOfStocksItem, SearchItem} from "../http.service";
+import {Component, OnInit} from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
 import {FormControl} from '@angular/forms';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {debounceTime} from "rxjs/operators";
+
+import {HttpService, ListOfStocksItem, SearchItem} from "../http.service";
 
 @Component({
   selector: 'app-list-of-stocks',
@@ -23,14 +24,12 @@ export class ListOfStocksComponent implements OnInit {
   searchQueryControlSub: Subscription;
   searchList: SearchItem[] = [];
 
-  constructor(private httpService: HttpService,
-  ) {
+  constructor(private httpService: HttpService) {
     this.searchQueryControlSub = this.searchQueryControl.valueChanges
       .pipe(debounceTime(1000))
       .subscribe(searchQuery => {
         this.httpService.search(searchQuery).subscribe((data) => {
           this.searchList = data;
-          console.log(this.searchList);
         });
       });
   }
@@ -40,7 +39,6 @@ export class ListOfStocksComponent implements OnInit {
       this.list = data;
       this.length = data.length;
       this.getPaginatedData();
-      console.log(this.list[0].ticker);
     });
   }
 
@@ -54,8 +52,6 @@ export class ListOfStocksComponent implements OnInit {
       this.paginatedList = this.list.slice(0, this.pageSize);
     }
   }
-
-
 
   ngOnDestroy() {
     this.searchQueryControlSub.unsubscribe();

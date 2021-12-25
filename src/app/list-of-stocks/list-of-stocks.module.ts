@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ListOfStocksComponent } from './list-of-stocks.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { RouterModule } from '@angular/router';
-import { MatInputModule } from '@angular/material/input';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {RouterModule} from '@angular/router';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
 import {MatListModule} from "@angular/material/list";
 import {MatOptionModule} from "@angular/material/core";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+
+import {ListOfStocksComponent} from './list-of-stocks.component';
 
 @NgModule({
   declarations: [
@@ -32,4 +33,5 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     ListOfStocksComponent,
   ]
 })
-export class ListOfStocksModule { }
+export class ListOfStocksModule {
+}

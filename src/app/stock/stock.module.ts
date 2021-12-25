@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { StockComponent } from './stock.component';
-import { NgxEchartsModule } from 'ngx-echarts';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {MatCardModule} from "@angular/material/card";
+import {NgxEchartsModule} from 'ngx-echarts';
+
+import {StockComponent} from './stock.component';
 
 
 @NgModule({
@@ -17,4 +18,5 @@ import {MatCardModule} from "@angular/material/card";
     MatCardModule,
   ]
 })
-export class StockModule { }
+export class StockModule {
+}
