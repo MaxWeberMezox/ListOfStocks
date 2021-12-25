@@ -1,0 +1,20 @@
+<div class="mat-subheading-1">
+  <h1 *ngIf="!tickerPrices.length">Дані за останню добу відсутні</h1>
+  <div *ngIf="tickerPrices.length" echarts [options]="options"></div>
+</div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ticker}}</mat-card-title>
+
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      low {{tickerPrices[tickerPrices.length-1].low}}
+      high {{tickerPrices[tickerPrices.length-1].high}}
+      close {{tickerPrices[tickerPrices.length-1].close}}
+      open {{tickerPrices[tickerPrices.length-1].open}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>

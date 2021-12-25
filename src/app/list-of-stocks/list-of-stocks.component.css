@@ -1,0 +1,40 @@
+table {
+  width: 100%;
+}
+.mat-row:hover {
+  background-color: silver;
+}
+.list-of-stocks-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.list-of-stocks-full-width {
+  width: 100%;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.search-list {
+  left: 0;
+  right: 0;
+  position: absolute;
+  background: white;
+}
+
+mat-option {
+  width: 100%;
+}
+
+.mat-spinner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 50%;
+}

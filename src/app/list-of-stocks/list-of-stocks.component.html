@@ -1,0 +1,80 @@
+<div>
+  <mat-form-field class="search-form" appearance="fill">
+    <mat-label>Search ticker</mat-label>
+    <input matInput type="text" [value]="searchQuery" [formControl]="searchQueryControl">
+  </mat-form-field>
+  <mat-card class="search-list" *ngIf="searchList.length">
+    <mat-option *ngFor="let item of searchList" routerLink="/stock/{{item.ticker}}">
+      {{item.ticker}} - {{item.name}}
+    </mat-option>
+  </mat-card>
+  <div class="mat-spinner">
+    <mat-spinner *ngIf="!list.length"></mat-spinner>
+  </div>
+
+  <div *ngIf="list.length">
+    <table mat-table [dataSource]="paginatedList" class="mat-elevation-z8">
+      <ng-container matColumnDef="ticker">
+        <th mat-header-cell *matHeaderCellDef> Ticker</th>
+        <td mat-cell *matCellDef="let stock"> {{stock.ticker}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="prevClose">
+        <th mat-header-cell *matHeaderCellDef> Preview Close</th>
+        <td mat-cell *matCellDef="let stock"> {{stock.prevClose}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="open">
+        <th mat-header-cell *matHeaderCellDef> Open</th>
+        <td mat-cell *matCellDef="let stock"> {{stock.open}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="high">
+        <th mat-header-cell *matHeaderCellDef> High</th>
+        <td mat-cell *matCellDef="let stock"> {{stock.high}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="mid">
+        <th mat-header-cell *matHeaderCellDef> Mid</th>
+        <td mat-cell *matCellDef="let stock"> {{stock.mid}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="low">
+        <th mat-header-cell *matHeaderCellDef> Low</th>
+        <td mat-cell *matCellDef="let stock"> {{stock.low}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="bidSize">
+        <th mat-header-cell *matHeaderCellDef> BidSize</th>
+        <td mat-cell *matCellDef="let stock"> {{stock.bidSize}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="bidPrice">
+        <th mat-header-cell *matHeaderCellDef> BidPrice</th>
+        <td mat-cell *matCellDef="let stock"> {{stock.bidPrice}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="askSize">
+        <th mat-header-cell *matHeaderCellDef> AskSize</th>
+        <td mat-cell *matCellDef="let stock"> {{stock.askSize}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="askPrice">
+        <th mat-header-cell *matHeaderCellDef> AskPrice</th>
+        <td mat-cell *matCellDef="let stock"> {{stock.askPrice}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" routerLink="/stock/{{row.ticker}}">
+    </table>
+
+    <mat-paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="getPaginatedData($event)"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+</div>
