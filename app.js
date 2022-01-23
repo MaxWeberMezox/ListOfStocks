@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const http = require('http');
 const path = require('path');
@@ -6,6 +7,8 @@ const compression = require('compression');
 const app = express();
 
 app.use(compression());
+
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'dist/list-of-stocks')));
 

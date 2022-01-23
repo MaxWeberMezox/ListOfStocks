@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router'
+import {Store, select} from '@ngrx/store'
 
-import {HttpService, StockItem} from "../http.service";
+import {HttpService, StockItem} from '../http.service';
+import {AppState} from "../store/states/app.state";
+import {GetStockItem, ListOfStocksActions} from '../store/actions/list-of-stocks.actions'
+import {selectTickerPrices} from '../store/selectors/list-of-stocks.selector'
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
@@ -16,18 +20,20 @@ const formatDate = (dateString: string) => {
   styleUrls: ['./stock.component.css']
 })
 export class StockComponent implements OnInit {
+  stockItem$ = this._store.pipe(select(selectTickerPrices));
   tickerPrices: StockItem[] = [];
   routeParams: ParamMap;
   ticker: string;
   options: any;
 
-  constructor(private httpService: HttpService, private route: ActivatedRoute) {
+  constructor(private httpService: HttpService, private route: ActivatedRoute, private _store: Store<AppState>) {
     this.routeParams = route.snapshot.paramMap;
     this.ticker = this.routeParams.get('ticker') as string;
   }
 
   ngOnInit(): void {
-    this.httpService.getStock(this.ticker).subscribe((data) => {
+    this._store.dispatch(new GetStockItem(this.ticker));
+    this.stockItem$.subscribe((data) => {
       this.tickerPrices = data.map(item => (
         {
           ...item,

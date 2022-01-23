@@ -3,8 +3,8 @@
     <mat-label>Search ticker</mat-label>
     <input matInput type="text" [value]="searchQuery" [formControl]="searchQueryControl">
   </mat-form-field>
-  <mat-card class="search-list" *ngIf="searchList.length">
-    <mat-option *ngFor="let item of searchList" routerLink="/stock/{{item.ticker}}">
+  <mat-card class="search-list" *ngIf="searchQueryControl.value">
+    <mat-option *ngFor="let item of (searchStocks$ | async)" routerLink="/stock/{{item.ticker}}">
       {{item.ticker}} - {{item.name}}
     </mat-option>
   </mat-card>
